@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>formatRawData</title>
+<script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript" src="js/bootstrap.js"></script>
+<style type=text/css>
+body {
+	background-color: #6d695c;
+	background-image: repeating-linear-gradient(120deg, rgba(255, 255, 255, .1),
+		rgba(255, 255, 255, .1) 1px, transparent 1px, transparent 60px ),
+		repeating-linear-gradient(60deg, rgba(255, 255, 255, .1),
+		rgba(255, 255, 255, .1) 1px, transparent 1px, transparent 60px ),
+		linear-gradient(60deg, rgba(0, 0, 0, .1) 25%, transparent 25%,
+		transparent 75%, rgba(0, 0, 0, .1) 75%, rgba(0, 0, 0, .1) ),
+		linear-gradient(120deg, rgba(0, 0, 0, .1) 25%, transparent 25%,
+		transparent 75%, rgba(0, 0, 0, .1) 75%, rgba(0, 0, 0, .1) );
+	background-size: 70px 120px;
+}
+</style>
+<script type="text/javascript">
+	$(document).ready(function() {
+		$('#btnOld').click(function() {
+			$("#raw_data").val();
+		});
+		$('#btnNew').click(function() {
+			$("#new_data").val();
+		});
+		$('#btnFormat').click(function() {
+			$.post('Format', {
+				rawdata : $('#raw_data').val()
+			}, function(data, textStatus) {
+				$('#new_data').val(data);
+			}, 'json')
+		})
+	})
+</script>
+</head>
+<body>
+	<div class="container">
+		<div class="span12 well">
+			<textarea class="span12" id="raw_data" name="raw_data"
+				placeholder="Type in your message" rows="5"></textarea>
+			<h6 class="pull-right">Ian@PerfLab</h6>
+			<input id="btnFormat" class="btn btn-info" type="button"
+				value="Format Raw Data" /> <input id="btnOld" class="btn btn-info"
+				type="button" value="Clear Raw Data" /> <input id="btnNew"
+				class="btn btn-info" type="button" value="Clear New Data" />
+		</div>
+		<div class="span12 well">
+			<textarea class="span12" id="new_data" name="new_data"
+				placeholder="Here is your result" rows="16"></textarea>
+			<!--  <h6 class="pull-right">Ian@PerfLab</h6>
+        <button class="btn btn-info" type="submit">Format Raw Data</button> -->
+		</div>
+
+
+	</div>
+</body>
+<link href="css/bootstrap.css" rel="stylesheet" media="screen" />
+</html>
